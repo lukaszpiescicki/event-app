@@ -1,11 +1,29 @@
 from django.urls import path
-from . import views
-from .views import MusicNotesDetailView, MusicNotesCreateView, MusicNotesListView, MusicNotesDeleteView, MusicNotesUpdateView
+
+from .views import (
+    MusicNotesCreateView,
+    MusicNotesDeleteView,
+    MusicNotesDetailView,
+    MusicNotesListView,
+    MusicNotesUpdateView,
+)
 
 urlpatterns = [
-    path('musicnote', MusicNotesListView.as_view(), name='music_note-home'),
-    path('musicnote/<int:pk>/', MusicNotesDetailView.as_view(), name='music_note-detail'),
-    path('musicnote/new/', MusicNotesCreateView.as_view(), name='music_note-create'),
-    path('musicnote/update/<int:pk>/', MusicNotesUpdateView.as_view(), name='music_note-update'),
-    path('musicnote/delete/<int:pk>/', MusicNotesDeleteView.as_view(), name='music_note-delete'),
+    path("music-notes/", MusicNotesListView.as_view(), name="music-notes-home"),
+    path(
+        "music-notes/<int:pk>/",
+        MusicNotesDetailView.as_view(),
+        name="music_note-detail",
+    ),
+    path("music-notes/new/", MusicNotesCreateView.as_view(), name="music-note-create"),
+    path(
+        "music-notes/<int:pk>/update/",
+        MusicNotesUpdateView.as_view(),
+        name="music-note-update",
+    ),
+    path(
+        "music-notes/<int:pk>/delete/",
+        MusicNotesDeleteView.as_view(),
+        name="music-note-delete",
+    ),
 ]
