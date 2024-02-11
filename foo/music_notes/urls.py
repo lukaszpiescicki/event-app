@@ -13,7 +13,7 @@ urlpatterns = [
     path(
         "music-notes/<int:pk>/",
         MusicNotesDetailView.as_view(),
-        name="music_note-detail",
+        name="music-note-detail",
     ),
     path("music-notes/new/", MusicNotesCreateView.as_view(), name="music-note-create"),
     path(

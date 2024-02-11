@@ -1,16 +1,11 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <article>
-
-        <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <div class="content-section">
+<div class="content-section">
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">New Music Notes</legend>
+            <legend class="border-bottom mb-4">New Comment</legend>
             {{ form|crispy }}
         </fieldset>
         <div class="form-group">
@@ -18,10 +13,4 @@
         </div>
     </form>
 </div>
-            </div>
-        </div>
-        </div>
-
-    </article>
-
 {% endblock %}

@@ -1,14 +1,22 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import (
     LoginRequiredMixin,
     PermissionRequiredMixin,
     UserPassesTestMixin,
 )
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import CreateView, DeleteView, UpdateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
 from .models import Event
+
+
+@login_required
+def event_register(request, pk):
+    event = get_object_or_404(Event, id=pk)
+    event.participants.add(request.user)
+    return redirect("event-detail", pk=event.id)
 
 
 class EventsListView(ListView):
@@ -26,7 +34,7 @@ class EventsDetailView(DetailView):
 class EventsCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Event
     template_name = "events/events_form.html"
-    fields = ["name", "date", "time", "place", "description"]
+    fields = ["name", "date", "time", "place", "description", "repertoire"]
     permission_required = "events.add_event"
 
 

@@ -11,3 +11,4 @@ class MusicNotes(models.Model):
     in_use = models.BooleanField(null=True, blank=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
     date_posted = models.DateTimeField(default=timezone.now)
+    voice = models.CharField(max_length=20, null=True, blank=True)

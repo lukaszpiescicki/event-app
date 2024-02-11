@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="card text-center">
+        <div class="card-header">
+            Event
+            <br>
+            <small class="text-muted">{{ object.date_posted }}</small>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Date {{ object.date }} - {{ object.time }}</p>
+            <p class="card-text">Location: {{ object.place }}</p>
+            <h5 class="card-title">{{ object.name }}</h5>
+            {% if object.author == user %}
+                <a href="#" class="btn btn-secondary">Update</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            {% endif %}
+        </div>
+        <div>
+            {% if user.is_authenticated %}
+                {% if user != event.author %}
+                <a href="{% url 'event-register' event.id %}">Register for Event</a>
+                    {% endif %}
+            {% else %}
+                <p>Please log in to register for this event.</p>
+            {% endif %}
+        </div>
+        {#  <div class="card-footer text-muted">#}
+        {#  </div>#}
+    </div>
+
+
+{% endblock %}

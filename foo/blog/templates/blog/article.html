@@ -6,6 +6,38 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <a class="mr-2" href="#">{{ object.author }}</a>
                 <small class="text-muted">{{ object.date_posted }}</small>
+                <br><br>
+
+                <div>
+                    <h2>{{ object.title }}</h2>
+                    {{ object.content }}
+                </div>
+                <br><br>
+                <hr>
+                    <form action="{% url 'article-like' object.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" name="article_id" value="{{ object.id }}"
+                                class="btn btn-primary">Like - {{ total_likes }}</button>
+                    </form>
+                <hr>
+                <br><br>
+                <hr>
+                <h3>Comments...</h3>
+
+                {% if not object.comments.all %}
+                    No Comments Yet...<a href="#">
+                    Add One</a>
+                {% else %}
+                    {% for comment in object.comments.all %}
+                        <strong>
+                        {{ comment.author }} - {{ comment.created }}
+                        </strong>
+                        <br/>
+                        {{ comment.body }}
+                    {% endfor %}
+                {% endif %}
+                <hr>
+                <br><br>
                 {% if object.author == user %}
                     <a href="{% url 'article-update' object.id %}" class="btn btn-secondary btn-sm mt-1 mb-1">Update</a>
                     <a href="{% url 'article-delete' object.id %}" class="btn btn-danger btn-sm mt-1 mb-1">Delete</a>

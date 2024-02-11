@@ -9,20 +9,20 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Time</th>
-                            <th scope="col">Place</th>
+                            <th scope="col">City</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone Number</th>
                         </tr>
                     </thead>
                     <tbody>
                     {#TODO jak zmienić szerokość tabeli#}
-                        {% for event in events %}
+                        {% for organization in organizations %}
                             <tr>
                                 <th scope="row">{{ forloop.counter }}</th>
-                                <th><a href="{% url 'event-detail' event.id %}">{{ event.name }}</a></th>
-                                <th>{{ event.date }}</th>
-                                <th>{{ event.time }}</th>
-                                <th>{{ event.place }}</th>
+                                <th><a href="{% url 'organization-detail' organization.id %}">{{ organization.name }}</a></th>
+                                <th>{{ organization.city }}</th>
+                                <th>{{ organization.email }}</th>
+                                <th>{{ organization.phone_number }}</th>
                             </tr>
                         {% endfor %}
                     </tbody>

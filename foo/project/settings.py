@@ -20,11 +20,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "crispy_bootstrap5",
+    "crispy_forms",
+    "django_extensions",
 ]
 
 INSTALLED_EXTENSIONS = [
-    "crispy_bootstrap5",
-    "crispy_forms",
     "blog",
     "API",
     "users",
@@ -34,6 +35,7 @@ INSTALLED_EXTENSIONS = [
 ]
 
 INSTALLED_APPS += INSTALLED_EXTENSIONS
+X_FRAME_OPTIONS = "SAMEORIGIN"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -71,7 +73,7 @@ WSGI_APPLICATION = "project.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "mydatabase",
+        "NAME": BASE_DIR / "mydatabase2",
     }
 }
 
