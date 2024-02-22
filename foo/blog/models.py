@@ -7,7 +7,7 @@ from django.utils import timezone
 class Article(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
-    date_posted = models.DateTimeField(default=timezone.now)
+    date_posted = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
     likes = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name="blog_articles"

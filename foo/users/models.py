@@ -6,6 +6,8 @@ from PIL import Image
 
 
 class CustomUser(AbstractUser):
+    first_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
     notes = (
         models.ForeignKey(

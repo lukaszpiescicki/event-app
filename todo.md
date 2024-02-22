@@ -95,3 +95,47 @@ Rekomendowana lista priorytetów
 1 - Music Notes -> DONE
 2 - Pierdoły typu komentarze itd. API dla blogu dokończyć itd.
 3 - Organizacje lub Eventy (Z prefrencja organizacji)
+
+
+
+TESTY Jednostkowe: 
+1. LoginRequiredMixin - Czy user jest zalogowany, czy nie czy endpoint jest chroniony.
+2. UserPermissions - Czy user ma odpowiednie uprawnienia do edycji, usuwania, tworzenia obiektów.
+3. UserPassesTestMixin - Jeżeli jest to testujesz zachowanie. 
+
+WIDOKI: 
+1. Create: 
+    - Tworzenie obiektu
+    - Tworzenie obiektu z błędnymi danymi
+    - Pobranie strony z formularzem
+    - Sprawdzenie użytego templatu
+   
+2. Update:
+    - Edycja obiektu
+    - Edycja obiektu który nie istnieje
+    - Edycja obiektu z błędnymi danymi
+    - Pobranie stronu z formularzem
+    - Sprawdzenie użytego templatu
+3. Delete:
+    - Usuwanie obiektu
+    - Usuwanie obiektu który nie istnieje
+    - Usuwanie obiektu który nie jest ownerem
+4. List:
+    - Wyświetlanie listy obiektów
+    - Wyświetlanie listy obiektów z paginacją
+    - Wyświetlanie listy obiektów z filtrowaniem
+    - Wyświetlanie listy obiektów z sortowaniem
+    - Sprawdzenie użytego templatu.
+5. Detail:
+    - Wyświetlanie obiektu
+    - Wyświetlanie obiektu który nie istnieje
+    - Wyświetlanie obiektu który nie jest ownerem
+    - Sprawdzenie użytego templatu
+    
+Formularze:
+1. Tworzenie obiektu z poprawnymi danymi form.is_valid()
+2. Tworzenie obiektu z błędnymi danymi form.is_valid()
+
+
+Modele:
+- Testujesz tylko swoje własne dopisane funkcje
