@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from music_notes.models import MusicNotes
+from django.urls import reverse
 
 
 class Event(models.Model):
@@ -18,5 +19,9 @@ class Event(models.Model):
     participants = models.ManyToManyField(
         settings.AUTH_USER_MODEL, blank=True, related_name="attended_events"
     )
-    repertoire = models.ManyToManyField(MusicNotes, blank=True)
+    repertoire = models.ManyToManyField(MusicNotes, blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
+
+
+    def get_absolute_url(self):
+        return reverse("event-detail", kwargs={"pk": self.pk})

@@ -70,7 +70,7 @@ class ArticleUpdateViewTestCase(TestCase):
             password="123456",
         )
 
-        self.user1 = CustomUser(
+        self.user1 = CustomUser.objects.create(
             username="filipraczek",
             first_name="Filip",
             last_name="Raczek",
@@ -171,7 +171,7 @@ class ArticleDeleteViewTestCase(TestCase):
             password="123456",
         )
 
-        self.user1 = CustomUser(
+        self.user1 = CustomUser.objects.create(
             username="filipraczek",
             first_name="Filip",
             last_name="Raczek",
@@ -271,7 +271,7 @@ class ArticleDetailViewTestCase(TestCase):
             password="123456",
         )
 
-        self.user1 = CustomUser(
+        self.user1 = CustomUser.objects.create(
             username="filipraczek",
             first_name="Filip",
             last_name="Raczek",

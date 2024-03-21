@@ -10,6 +10,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
 from .models import Event
+from .forms import EventCreateUpdateForm
 
 
 @login_required
@@ -34,13 +35,19 @@ class EventsDetailView(DetailView):
 class EventsCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Event
     template_name = "events/events_form.html"
-    fields = ["name", "date", "time", "place", "description", "repertoire"]
+    form_class = EventCreateUpdateForm
     permission_required = "events.add_event"
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 class EventsUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Event
     template_name = "events/events_form.html"
+    form_class = EventCreateUpdateForm
+    permission_required = "events.add_event"
 
     def test_func(self):
         event = self.get_object()

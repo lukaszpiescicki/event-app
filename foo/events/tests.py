@@ -87,7 +87,7 @@ class EventUpdateViewTestCase(TestCase):
             password="123456",
         )
 
-        self.user1 = CustomUser(
+        self.user1 = CustomUser.objects.create(
             username="filipraczek",
             first_name="Filip",
             last_name="Raczek",
@@ -189,7 +189,7 @@ class EventDeleteViewTestCase(TestCase):
             password="123456",
         )
 
-        self.user1 = CustomUser(
+        self.user1 = CustomUser.objects.create(
             username="filipraczek",
             first_name="Filip",
             last_name="Raczek",
@@ -253,7 +253,7 @@ class EventListViewTestCase(TestCase):
             password="123456",
         )
 
-        self.user1 = CustomUser(
+        self.user1 = CustomUser.objects.create(
             username="filipraczek",
             first_name="Filip",
             last_name="Raczek",
@@ -304,7 +304,7 @@ class EventDetailViewTest(TestCase):
             password="123456",
         )
 
-        self.user1 = CustomUser(
+        self.user1 = CustomUser.objects.create(
             username="filipraczek",
             first_name="Filip",
             last_name="Raczek",

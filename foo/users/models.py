@@ -19,6 +19,7 @@ class CustomUser(AbstractUser):
     image = models.ImageField(
         default="default.jpg", upload_to="profile_pics", null=True, blank=True
     )
+    friends = models.ManyToManyField("CustomUser", blank=True)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -29,3 +30,8 @@ class CustomUser(AbstractUser):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+
+class FriendRequest(models.Model):
+    from_user = models.ForeignKey(CustomUser, related_name='from_user', on_delete=models.CASCADE)
+    to_user = models.ForeignKey(CustomUser, related_name='to_user', on_delete=models.CASCADE)

@@ -1,13 +1,18 @@
 from rest_framework.viewsets import generics
-from .serializers import ArticleSerializer
+from rest_framework import mixins
 from blog.models import Article
+from .serializers import ArticleSerializer
 
 
-class GetAllArticles(generics.ListAPIView):
+class ArticleList(
+                    mixins.ListModelMixin,
+                    mixins.CreateModelMixin,
+                    generics.GenericAPIView
+                ):
     serializer_class = ArticleSerializer
     queryset = Article.objects.all()
 
 
-class GetArticle(generics.RetrieveAPIView):
+class ArticleDetail(generics.RetrieveAPIView):
     serializer_class = ArticleSerializer
     queryset = Article

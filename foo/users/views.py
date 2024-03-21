@@ -1,8 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.http import HttpResponse
 
 from .forms import ProfileUpdateForm, UserRegisterForm, UserUpdateForm
+from .models import CustomUser, FriendRequest
 
 
 def register(request):
@@ -32,3 +34,23 @@ def profile(request):
             return redirect(profile)
 
     return render(request, "users/profile.html", {"user_form": UserUpdateForm()})
+
+@login_required
+def send_friend_request(request, user_id):
+    from_user = request.user
+    to_user = CustomUser.objects.filter(id=user_id)
+    friend_request, created = FriendRequest.objects.get_or_create(from_user=from_user, to_user=to_user)
+    if created:
+        return HttpResponse('friend request sent')
+    return HttpResponse('friend request was already sent')
+
+@login_required
+def accept_friend_request(request, request_id):
+    friend_request = FriendRequest.objects.get(id=request_id)
+    if friend_request.to_user == request.user:
+        friend_request.to_user.friends.add(friend_request.from_user)
+        friend_request.from_user.friends.add(friend_request.to_user)
+        friend_request.delete()
+        return HttpResponse('friend request accepted')
+    else:
+        return HttpResponse('friend request not accepted')
