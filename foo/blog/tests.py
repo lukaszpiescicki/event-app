@@ -69,7 +69,6 @@ class ArticleUpdateViewTestCase(TestCase):
             last_name="Bak",
             password="123456",
         )
-        self.user.save()
 
         self.user1 = CustomUser(
             username="filipraczek",
@@ -77,7 +76,6 @@ class ArticleUpdateViewTestCase(TestCase):
             last_name="Raczek",
             password="qwerty",
         )
-        self.user1.save()
 
         self.article = Article.objects.create(
             title="article-title", content="content testowy", author=self.user
@@ -172,7 +170,6 @@ class ArticleDeleteViewTestCase(TestCase):
             last_name="Bak",
             password="123456",
         )
-        self.user.save()
 
         self.user1 = CustomUser(
             username="filipraczek",
@@ -180,7 +177,6 @@ class ArticleDeleteViewTestCase(TestCase):
             last_name="Raczek",
             password="qwerty",
         )
-        self.user1.save()
 
         self.article = Article.objects.create(
             title="article-title", content="content testowy", author=self.user
@@ -235,22 +231,22 @@ class ArticleListViewTestCase(TestCase):
             last_name="Bak",
             password="123456",
         )
-        self.user.save()
 
-        self.user1 = CustomUser(
+        self.user1 = CustomUser.objects.create(
             username="filipraczek",
             first_name="Filip",
             last_name="Raczek",
             password="qwerty",
         )
-        self.user1.save()
 
         self.article = Article.objects.create(
             title="article-title", content="content testowy", author=self.user
         )
+
         self.article1 = Article.objects.create(
             title="article-1", content="content 1", author=self.user1
         )
+
         self.article2 = Article.objects.create(
             title="article-2", content="content 2", author=self.user
         )
@@ -274,7 +270,6 @@ class ArticleDetailViewTestCase(TestCase):
             last_name="Bak",
             password="123456",
         )
-        self.user.save()
 
         self.user1 = CustomUser(
             username="filipraczek",
@@ -282,7 +277,6 @@ class ArticleDetailViewTestCase(TestCase):
             last_name="Raczek",
             password="qwerty",
         )
-        self.user1.save()
 
         self.article = Article.objects.create(
             title="article-title", content="content testowy", author=self.user
