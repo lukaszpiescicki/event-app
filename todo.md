@@ -1,12 +1,13 @@
 Functionalities
-
+## ADDITIONALS:
+1) add help_texts to models
 ## USERS
 1) Login / Rejestracja - DONE
 2) Rozbudowa bazowego Usera - DONE
 3) Edycja usera - DONE
 
-# TODO
-1) Testy Jednstkowe
+# TODO:
+1) Testy Jednstkowe #1
 
 # TODO*
 1) System powiadomień
@@ -21,13 +22,13 @@ Functionalities
 6) Wyświetalne listy artykułów wraz z Paginacja - DONE
 
 # TODO
-1) Testy Jednostkowe
+1) Testy Jednostkowe - DONE
 
 # TODO*
 1) Komentarze do artykułów  - DONE
 2) Oceny Artykułu skale 1-5 lub łapka w górę w dół. - DONE
-3) Tagi artykułów
-4) Pobranie artykułu w formie PDF.
+3) Tagi artykułów - DONE
+4) Pobranie artykułu w formie PDF. - DONE
 
 
 ## BLOG API
@@ -37,7 +38,7 @@ Functionalities
 # TODO
 1) Testy Jednostkowe
 
-# Tworzenie artykułow
+# Tworzenie artykułowa
 # Usuwanie arytkułow
 # Edycje artykułów
 
@@ -49,9 +50,9 @@ Functionalities
 2) Możliwosć zapisania się na wydarzenie - DONE
 3) Lista Wydarzeń - DONE
 4) Edycja Wydarzenia - DONE
-5) Generowanie linku do stworzenia szybkiego wydarzenia w Google Calendar
-6) Powiadomienie e-mail przed wydarzeniem np. 3 dni 1 dzień itd.
-7) Testy Jednostkowe
+5) Generowanie linku do stworzenia szybkiego wydarzenia w Google Calendar - DONE
+6) Powiadomienie e-mail przed wydarzeniem np. 3 dni 1 dzień itd. ( Selery )
+7) Testy Jednostkowe - DONE
 
 ### MUSIC_NOTES
 
@@ -69,7 +70,7 @@ Functionalities
 # TODO
 
 # NOTES
-1. Każdy user bedzie musiał należeć do jakiejś organizacji.
+1. Każdy user bedzie musiał należeć do jakiejś organizacji. BLOCKED
 2. Jak user ma być zapraszany do organizacji?
 3. Tworzenie organizacji - DONE
 4. User może należeć do kilku organizacji na raz. - DONE
@@ -93,23 +94,22 @@ filter -> MusicNotes.objects.filter(Q(instrument__in=user.instruments) | Q(voice
 Rekomendowana lista priorytetów
 
 1 - Music Notes -> DONE
-2 - Pierdoły typu komentarze itd. API dla blogu dokończyć itd.
-3 - Organizacje lub Eventy (Z prefrencja organizacji)
+2 - Pierdoły typu komentarze itd. API dla blogu dokończyć itd. - DONE
 
 
 
-TESTY Jednostkowe: 
+TESTY Jednostkowe:
 1. LoginRequiredMixin - Czy user jest zalogowany, czy nie czy endpoint jest chroniony.
 2. UserPermissions - Czy user ma odpowiednie uprawnienia do edycji, usuwania, tworzenia obiektów.
-3. UserPassesTestMixin - Jeżeli jest to testujesz zachowanie. 
+3. UserPassesTestMixin - Jeżeli jest to testujesz zachowanie.
 
-WIDOKI: 
-1. Create: 
+WIDOKI:
+1. Create:
     - Tworzenie obiektu
     - Tworzenie obiektu z błędnymi danymi
     - Pobranie strony z formularzem
     - Sprawdzenie użytego templatu
-   
+
 2. Update:
     - Edycja obiektu
     - Edycja obiektu który nie istnieje
@@ -120,6 +120,7 @@ WIDOKI:
     - Usuwanie obiektu
     - Usuwanie obiektu który nie istnieje
     - Usuwanie obiektu który nie jest ownerem
+   -  Usuwanie obiektu jak user jest nie zalogowany
 4. List:
     - Wyświetlanie listy obiektów
     - Wyświetlanie listy obiektów z paginacją
@@ -131,7 +132,7 @@ WIDOKI:
     - Wyświetlanie obiektu który nie istnieje
     - Wyświetlanie obiektu który nie jest ownerem
     - Sprawdzenie użytego templatu
-    
+
 Formularze:
 1. Tworzenie obiektu z poprawnymi danymi form.is_valid()
 2. Tworzenie obiektu z błędnymi danymi form.is_valid()
