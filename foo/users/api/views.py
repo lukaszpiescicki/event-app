@@ -7,6 +7,3 @@ from .serializers import UserSerializer
 class UserModelViewSet(ModelViewSet):
     serializer_class = UserSerializer
     queryset = CustomUser.objects.all()
-
-
-# TODO dodać friend requesty
