@@ -5,23 +5,35 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Event',
+            name="Event",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('date', models.DateField(help_text='date of the event')),
-                ('time', models.TimeField(blank=True, null=True)),
-                ('place', models.CharField(max_length=50)),
-                ('description', models.CharField(blank=True, max_length=500, null=True)),
-                ('date_posted', models.DateTimeField(default=django.utils.timezone.now)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50)),
+                ("date", models.DateField(help_text="date of the event")),
+                ("time", models.TimeField(blank=True, null=True)),
+                ("place", models.CharField(max_length=50)),
+                (
+                    "description",
+                    models.CharField(blank=True, max_length=500, null=True),
+                ),
+                (
+                    "date_posted",
+                    models.DateTimeField(default=django.utils.timezone.now),
+                ),
             ],
         ),
     ]

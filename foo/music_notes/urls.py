@@ -1,5 +1,7 @@
 from django.urls import path
+from rest_framework.routers import SimpleRouter
 
+from .api.views import MusicNotesViewSet
 from .views import (
     MusicNotesCreateView,
     MusicNotesDeleteView,
@@ -7,6 +9,9 @@ from .views import (
     MusicNotesListView,
     MusicNotesUpdateView,
 )
+
+router = SimpleRouter()
+router.register(r"music-notes-api", MusicNotesViewSet, basename="music-notes-api")
 
 urlpatterns = [
     path("music-notes/", MusicNotesListView.as_view(), name="music-notes-home"),
@@ -27,3 +32,6 @@ urlpatterns = [
         name="music-note-delete",
     ),
 ]
+
+
+urlpatterns += router.urls

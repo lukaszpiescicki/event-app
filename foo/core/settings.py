@@ -23,11 +23,11 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     "crispy_forms",
     "django_extensions",
+    "taggit",
 ]
 
 INSTALLED_EXTENSIONS = [
     "blog",
-    "API",
     "users",
     "music_notes",
     "events",
@@ -35,6 +35,10 @@ INSTALLED_EXTENSIONS = [
 ]
 
 INSTALLED_APPS += INSTALLED_EXTENSIONS
+
+if DEBUG:
+    INSTALLED_APPS.append("debug_toolbar")
+
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
 MIDDLEWARE = [
@@ -46,6 +50,11 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+INTERNAL_IPS = ["127.0.0.1"]
+
+if DEBUG:
+    MIDDLEWARE.append("debug_toolbar.middleware.DebugToolbarMiddleware")
 
 ROOT_URLCONF = "core.urls"
 
@@ -121,9 +130,9 @@ MEDIA_URL = "/media/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+DEFAULT_FROM_EMAIL = "django.core.mail.backends.console.EmailBackend"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 LOGIN_URL = "login"

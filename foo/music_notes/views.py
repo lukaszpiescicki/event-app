@@ -1,4 +1,8 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+    PermissionRequiredMixin,
+    UserPassesTestMixin,
+)
 from django.urls import reverse
 from django.views.generic import CreateView, DeleteView, UpdateView
 from django.views.generic.detail import DetailView
@@ -19,18 +23,21 @@ class MusicNotesDetailView(DetailView):
     template_name = "music_notes/note.html"
 
 
-class MusicNotesCreateView(LoginRequiredMixin, CreateView):
+class MusicNotesCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
+    permission_required = "music_notes.add_musicnotes"
     model = MusicNotes
     template_name = "music_notes/notes_form.html"
     fields = ["title", "duration", "url", "notes", "in_use"]
 
     def form_valid(self, form):
-        form.author = self.request.user
+        form.instance.author = self.request.user
         return super().form_valid(form)
 
 
-# TODO jak to przekierować do detailView edytowanego ?
-class MusicNotesUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class MusicNotesUpdateView(
+    LoginRequiredMixin, UserPassesTestMixin, UpdateView, PermissionRequiredMixin
+):
+    permission_required = "music_notes.change_musicnotes"
     model = MusicNotes
     template_name = "music_notes/notes_form.html"
     fields = ["title", "duration", "url", "notes", "in_use"]
@@ -43,7 +50,10 @@ class MusicNotesUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return reverse("music-note-detail", args=[self.object.pk])
 
 
-class MusicNotesDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class MusicNotesDeleteView(
+    LoginRequiredMixin, UserPassesTestMixin, DeleteView, PermissionRequiredMixin
+):
+    permission_required = "music_notes.delete_musicnotes"
     model = MusicNotes
     template_name = "music_notes/delete_confirm.html"
     success_url = "/"

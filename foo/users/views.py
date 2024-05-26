@@ -39,7 +39,7 @@ class ProfileUpdateView(UpdateView, LoginRequiredMixin):
 
 
 class SendFriendRequestView(View):
-    def get(self, request, user_id):
+    def post(self, request, user_id):
         from_user = request.user
         to_user = get_object_or_404(CustomUser, id=user_id)
         friend_request, created = FriendRequest.objects.get_or_create(

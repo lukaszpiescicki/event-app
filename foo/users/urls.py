@@ -1,14 +1,37 @@
 from django.contrib.auth import views as auth_views
 from django.urls import path
-from users import views as user_views
+from rest_framework.routers import SimpleRouter
 
-from . import views
+from .api.views import UserModelViewSet
+from .views import (
+    AcceptFriendRequestView,
+    ProfileUpdateView,
+    SendFriendRequestView,
+    UserRegisterView,
+)
+
+router = SimpleRouter()
+router.register(r"users", UserModelViewSet)
 
 urlpatterns = [
-    path("register/", views.register, name="user-register"),
-    path("login/", auth_views.LoginView.as_view(template_name="users/login.html"), name='login'),
+    path("register/", UserRegisterView.as_view(), name="user-register"),
+    path(
+        "login/",
+        auth_views.LoginView.as_view(template_name="users/login.html"),
+        name="login",
+    ),
     path("logout/", auth_views.LoginView.as_view(template_name="users/logout.html")),
-    path("accounts/profile/", user_views.profile, name="profile"),
-    path('send_friend_request/<int:pk>', user_views.send_friend_request, name="send_friend_request"),
-    path('accept_friend_request/<int:pk>', user_views.accept_friend_request, name='accept_friend_request')
+    path("accounts/profile/", ProfileUpdateView.as_view(), name="profile"),
+    path(
+        "send-friend-request/<int:pk>",
+        SendFriendRequestView.as_view(),
+        name="send_friend_request",
+    ),
+    path(
+        "accept-friend-request/<int:pk>",
+        AcceptFriendRequestView.as_view(),
+        name="accept_friend_request",
+    ),
 ]
+
+urlpatterns += router.urls

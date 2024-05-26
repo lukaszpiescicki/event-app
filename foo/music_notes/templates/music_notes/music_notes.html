@@ -15,7 +15,7 @@
                 {% for note in music_notes %}
                     <tr>
                         <th scope="row">{{ forloop.counter }}</th>
-                        <th><a href="{% url 'music_note-detail' note.id %}">{{ note.title }}</a></th>
+                        <th><a href="{% url 'music-note-detail' note.id %}">{{ note.title }}</a></th>
                         <th>{{ note.duration }}</th>
                         <th><a href="{{ note.url }}"><i href="{{ note.url }}" class="fa-brands fa-youtube"></i></a></th>
                     </tr>

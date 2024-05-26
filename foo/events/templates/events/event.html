@@ -16,6 +16,7 @@
             {% endif %}
         </div>
         <div>
+            <a href="https://calendar.google.com/calendar/u/0/r/eventedit">Add to Google Calendar</a>
             {% if user.is_authenticated %}
                 {% if user != event.author %}
                 <a href="{% url 'event-register' event.id %}">Register for Event</a>

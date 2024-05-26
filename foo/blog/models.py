@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
-from django.utils import timezone
+from taggit.managers import TaggableManager
 
 
 class Article(models.Model):
@@ -12,6 +12,7 @@ class Article(models.Model):
     likes = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name="blog_articles"
     )
+    tags = TaggableManager()
 
     def total_likes(self):
         return self.likes.count()
@@ -19,7 +20,7 @@ class Article(models.Model):
     def get_absolute_url(self):
         return reverse("article-detail", kwargs={"pk": self.pk})
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.title
 
 
