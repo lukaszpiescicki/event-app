@@ -8,7 +8,7 @@ class MusicNotes(models.Model):
     duration = models.DurationField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
     notes = models.FileField(
-        upload_to="blog/pdf", null=True, blank=True, help_text="Pdf file of music notes"
+        upload_to="pdf", null=True, blank=True, help_text="Pdf file of music notes"
     )
     in_use = models.BooleanField(null=True, blank=True)
     author = models.ForeignKey(
