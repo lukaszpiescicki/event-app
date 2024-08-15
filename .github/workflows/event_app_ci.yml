@@ -45,7 +45,7 @@ jobs:
         poetry install
     - name: Run Tests
       run: |
-        cd foo
+        cd src
         poetry run python manage.py test
     env:
       POSTGRES_DB: ${{ vars.POSTGRES_DB }}

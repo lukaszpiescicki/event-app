@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<article>
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <a class="mr-2" href="#">{{ object.author }}</a>
+                <small class="text-muted">{{ object.date_posted }}</small>
+                <br>
+                {% if object.author == user %}
+                    <a href="{% url 'music-note-update' object.id %}" class="btn btn-secondary btn-sm mt-1 mb-1">Update</a>
+                    <a href="{% url 'music-note-delete' object.id %}" class="btn btn-danger btn-sm mt-1 mb-1">Delete</a>
+                {% endif %}
+                <h1>{{ object.title }}</h1>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{{ object.url }}">Check recording</a>
+            {% if object.notes %}
+            <div>
+                <embed src="{{ object.notes.url }}" type="application/pdf" height="700px" width="500">
+            </div>
+            {% else %}
+                <div>
+                    <p>PDF file doesn't exist</p>
+                </div>
+            {% endif %}
+
+            </div>
+        </div>
+    </div>
+</article>
+{% endblock %}

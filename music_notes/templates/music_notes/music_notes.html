@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<article>
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">Video</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for note in music_notes %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <th><a href="{% url 'music-note-detail' note.id %}">{{ note.title }}</a></th>
+                        <th>{{ note.duration }}</th>
+                        <th><a href="{{ note.url }}"><i href="{{ note.url }}" class="fa-brands fa-youtube"></i></a></th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</article>
+{% endblock %}

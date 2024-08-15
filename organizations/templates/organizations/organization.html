@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<article class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <a class="mr-2" href="#">{{ object.owner }}</a>
+                <br>
+                {% if object.owner == user %}
+                    <a href="{% url 'organization-update' object.id %}" class="btn btn-secondary btn-sm mt-1 mb-1">Update</a>
+                    <a href="{% url 'organization-delete' object.id %}" class="btn btn-danger btn-sm mt-1 mb-1">Delete</a>
+                {% endif %}
+                <h1>{{ object.name }}</h1>
+                <p>{{ object.city }}</p>
+                <p>{{ object.email }}</p>
+                <p>{{ object.phone_number }}</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+{% endblock %}

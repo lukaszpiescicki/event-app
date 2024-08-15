@@ -1,0 +1,33 @@
+services:
+  organization_manager:
+    container_name: organization_manager
+    build:
+      context: .
+      dockerfile: src/Dockerfile
+    ports:
+      - 8000:8000
+    depends_on:
+      organization_manager_db:
+        condition: service_healthy
+    volumes:
+      - ./src:/app/src
+
+  organization_manager_db:
+    image: postgres:16.3
+    container_name: organization_manager_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgres
+    env_file:
+      - .env
+    volumes:
+      - .:/src/data/postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-U", "postgres", "-d", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
